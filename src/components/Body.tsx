@@ -1,0 +1,15 @@
+import React from "react";
+import Header from "./Header";
+import Browse from "./Browse";
+import { Outlet } from "react-router-dom";
+
+const Body = () => {
+  return (
+    <>
+      <Header />
+      <Outlet />
+    </>
+  );
+};
+
+export default Body;
