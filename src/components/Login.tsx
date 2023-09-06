@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 
 const LoginPage = () => {
+  const [isSignIn, setIsSignIn] = useState(true);
+
   return (
     <div>
       <div className="background absolute">
@@ -13,23 +15,46 @@ const LoginPage = () => {
       <div className="">
         <form
           action=""
-          className="w-3/12 absolute p-12 my-36 mx-auto right-72 left-0 content-center text-white bg-black bg-opacity-80"
+          className="w-3/12 absolute p-12 my-36 mx-auto right-0 left-0 content-center text-white bg-black bg-opacity-80"
+          onClick={(e) => {
+            e.preventDefault();
+          }}
         >
-          <h1 className="font-bold text-2xl py-4">Sign in</h1>
+          <h1 className="font-bold text-2xl py-4">
+            {isSignIn ? "Sign in" : "Sign up"}
+          </h1>
           <input
             type="text"
             placeholder="Email or phone number"
-            className="p-4 my-4 w-full bg-gray-700"
+            className="p-4 my-3 w-full bg-gray-700"
           />
+          {isSignIn && (
+            <input
+              type="text"
+              placeholder="Full name"
+              className="p-4 my-3 bg-gray-700 w-full"
+            />
+          )}
           <input
             type="text"
             placeholder="Password"
-            className="p-4 my-4 bg-gray-700 w-full"
+            className="p-4 my-3 bg-gray-700 w-full"
           />
           <button className="bg-red-600 rounded-md p-4 my-4 w-full">
-            Sign in
+            {!isSignIn ? "Sign in" : "Sign up"}
           </button>
-          <p className="py-4">New to Netflix? Sign up now</p>
+          <p className="py-4 text-xl">
+            {isSignIn ? "New to Netflix?" : "Alredy a user?"}
+            <span
+              className="font-bold cursor-pointer"
+              onClick={() => {
+                setIsSignIn(!isSignIn);
+              }}
+            >
+              {" "}
+              {isSignIn ? "Sign up now" : "Sign in now"}
+            </span>
+          </p>
         </form>
       </div>
     </div>
